@@ -1,0 +1,626 @@
+/* =========================================================
+   瓊林蔡氏網站樣式 ── 現代美術館風格
+   設計參數（顏色、字型、間距）都集中在 :root，改這裡就能換整站風格。
+   ========================================================= */
+:root{
+  /* 顏色 */
+  --bg:#F6F3EE;        /* 主背景：宣紙白 */
+  --bg-alt:#EDE7DD;    /* 次背景 */
+  --paper:#FFFFFF;     /* 卡片 */
+  --ink:#1E1A17;       /* 主文字：墨 */
+  --ink-2:#6B625A;     /* 次文字 */
+  --line:#D9D1C5;      /* 細線 */
+  --accent:#A63A2B;    /* 主色：紅磚 */
+  --accent-2:#7E2A1F;  /* 深紅磚 */
+  --gold:#A8843C;      /* 點綴：舊金 */
+  --dark:#1F1C1A;      /* 深色區塊（戰地） */
+  /* 四甲圖層（宗祠地圖） */
+  --jia-1:#A8843C;     /* 大厝甲：舊金 */
+  --jia-2:#4F6B78;     /* 坑墘甲：石青 */
+  --jia-3:#A63A2B;     /* 樓仔下甲：紅磚 */
+  --jia-4:#5E7046;     /* 大宅甲：苔綠 */
+  /* 字型 */
+  --serif:"Noto Serif TC","Source Han Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  /* 尺寸 */
+  --w:1200px; --gap:clamp(20px,3vw,40px); --sec:clamp(72px,10vw,140px);
+  --radius:2px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration-color:var(--accent);text-underline-offset:3px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.3;margin:0;letter-spacing:.02em}
+p{margin:0 0 1em}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 var(--gap)}
+.narrow{max-width:680px}
+.muted{color:var(--ink-2)}
+.small{font-size:14px}
+
+/* ---------- 導覽列 ---------- */
+.site-h{position:sticky;top:0;z-index:50;background:rgba(246,243,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-h .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:19px;letter-spacing:.2em;white-space:nowrap}
+.seal{width:28px;height:28px;background:var(--accent);color:#fff;font-size:13px;display:grid;place-items:center;letter-spacing:0;line-height:1.05;text-align:center;border-radius:2px}
+.menu{display:flex;gap:clamp(10px,2.4vw,34px);list-style:none;margin:0;padding:0}
+.menu a{text-decoration:none;font-size:15px;letter-spacing:.12em;padding:22px 0;border-bottom:2px solid transparent;color:var(--ink-2)}
+.menu a:hover{color:var(--ink)}
+.menu a.on{color:var(--ink);border-bottom-color:var(--accent)}
+.menu small{display:block;font-size:10px;letter-spacing:.2em;color:var(--ink-2);line-height:1;margin-top:-18px;opacity:.7}
+@media(max-width:720px){.site-h .wrap{height:auto;flex-wrap:wrap;padding-top:10px}.menu{width:100%;justify-content:space-between}.menu a{padding:10px 0 12px;font-size:14px}.menu small{display:none}}
+
+/* ---------- 區塊 ---------- */
+.sec{padding:var(--sec) 0}
+.sec.alt{background:var(--bg-alt)}
+.sec.dark{background:var(--dark);color:#EDE6DC}
+.sec.dark .muted{color:#A99E91}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.32em;color:var(--accent);margin-bottom:18px;font-family:var(--sans)}
+.eyebrow::before{content:"";width:36px;height:1px;background:currentColor}
+.sec.dark .eyebrow{color:#D9A86C}
+.h2{font-size:clamp(30px,4.6vw,54px);margin-bottom:18px}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:640px;margin-bottom:48px}
+.sec.dark .lead{color:#B9AE9F}
+.head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+
+/* ---------- 頁首章節橫幅（子頁） ---------- */
+.chapter{padding:clamp(64px,10vw,130px) 0 clamp(40px,6vw,70px);border-bottom:1px solid var(--line)}
+.chapter .no{font-family:var(--serif);font-size:15px;color:var(--accent);letter-spacing:.3em}
+.chapter h1{font-size:clamp(48px,9vw,120px);letter-spacing:.12em;margin:10px 0 20px;font-weight:500}
+.chapter p{font-size:clamp(17px,1.8vw,21px);color:var(--ink-2);max-width:620px}
+.toc{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:36px;list-style:none;padding:0}
+.toc a{text-decoration:none;font-size:15px;color:var(--ink-2);border-bottom:1px solid var(--line);padding-bottom:2px}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- 首頁 hero ---------- */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,80px);align-items:end;padding:clamp(40px,6vw,80px) 0 clamp(50px,7vw,90px)}
+.hero .vt{writing-mode:vertical-rl;font-family:var(--serif);font-size:clamp(84px,14vw,190px);line-height:1;letter-spacing:.08em;font-weight:500;margin:0}
+.hero .vt span{color:var(--accent)}
+.hero .ph{aspect-ratio:16/10}
+.hero-cap{display:flex;justify-content:space-between;gap:20px;margin-top:18px;flex-wrap:wrap}
+.hero-cap p{font-family:var(--serif);font-size:clamp(18px,2vw,24px);margin:0;max-width:560px}
+.hero-cap .sub{font-size:13px;letter-spacing:.3em;color:var(--ink-2)}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.hero .vt{writing-mode:horizontal-tb;font-size:72px}}
+
+/* 數字條 */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.fact{padding:26px 20px 24px 0}
+.fact+.fact{padding-left:20px;border-left:1px solid var(--line)}
+.fact b{display:block;font-family:var(--serif);font-size:clamp(30px,4vw,48px);font-weight:500;line-height:1.1}
+.fact span{font-size:13px;color:var(--ink-2);letter-spacing:.08em}
+@media(max-width:720px){.facts{grid-template-columns:1fr 1fr}.fact:nth-child(3){padding-left:0;border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* 四篇章入口 */
+.chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.chap{text-decoration:none;display:block}
+.chap .ph{aspect-ratio:3/4;margin-bottom:16px;transition:transform .5s}
+.chap:hover .ph{transform:translateY(-6px)}
+.chap .n{font-family:var(--serif);color:var(--accent);font-size:14px;letter-spacing:.2em}
+.chap h3{font-size:26px;margin:4px 0 6px}
+.chap p{font-size:15px;color:var(--ink-2);margin:0}
+@media(max-width:900px){.chapters{grid-template-columns:1fr 1fr}}
+
+/* ---------- 圖片 / 插圖 ---------- */
+.ph{position:relative;overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3}
+.ph svg,.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .cap{position:absolute;left:8px;bottom:8px;font-size:10px;letter-spacing:.08em;background:rgba(255,255,255,.75);color:var(--ink-2);padding:1px 6px;font-family:ui-monospace,monospace}
+.ph.loaded .cap{display:none}
+
+/* ---------- 通用元件 ---------- */
+.grid{display:grid;gap:var(--gap)}
+.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.c3,.c4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.c2,.c3,.c4{grid-template-columns:1fr}}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+.item h3{font-size:21px;margin:10px 0 6px}
+.item p{font-size:15.5px;color:var(--ink-2);margin:0}
+.rule{border-top:1px solid var(--line);padding-top:18px}
+.tag{display:inline-block;font-size:11px;letter-spacing:.16em;color:var(--accent);border:1px solid currentColor;padding:0 8px;line-height:20px;margin-right:6px}
+.tag.fill{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tag.gold{color:var(--gold)}
+.tag.grey{color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.chip{font:inherit;font-size:14px;letter-spacing:.06em;background:none;border:1px solid var(--line);padding:4px 16px;border-radius:999px;cursor:pointer;color:var(--ink-2)}
+.chip.on,.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff}
+.more{margin-top:10px}
+.more summary{cursor:pointer;font-size:14px;color:var(--accent);list-style:none;letter-spacing:.08em}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:" ＋"}
+.more[open] summary::after{content:" －"}
+.more>div{margin-top:10px;font-size:15.5px;color:var(--ink-2)}
+sup.src a{font-size:10px;text-decoration:none;color:var(--gold);margin-left:1px;font-family:var(--sans)}
+.modern{margin-top:12px;font-size:14.5px;padding-left:12px;border-left:2px solid var(--gold);color:var(--ink)}
+.modern b{color:var(--gold);font-weight:500;font-size:12px;letter-spacing:.18em;display:block}
+.hint{font-size:13.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px;margin-top:28px}
+
+/* 名詞 */
+.term{font:inherit;color:inherit;background:none;border:0;padding:0;border-bottom:1px dotted var(--accent);cursor:help}
+.pop{position:absolute;z-index:90;width:min(320px,calc(100vw - 24px));background:var(--ink);color:#F1EBE2;padding:16px 18px;font-size:14px;line-height:1.7;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.pop b{font-family:var(--serif);font-size:18px;color:#fff;display:block;margin-bottom:4px}
+.pop .m{margin-top:8px;color:#E0BC85}
+.pop a{color:#fff;font-size:12px}
+
+/* 進場動畫 */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ---------- 公告 ---------- */
+.news{border-top:1px solid var(--ink)}
+.news article{display:grid;grid-template-columns:140px 110px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.news .d{font-family:var(--serif);font-size:15px}
+.news h3{font-size:19px;margin-bottom:4px}
+.news p{margin:0;font-size:15.5px;color:var(--ink-2)}
+.news a.go{font-size:14px;color:var(--accent)}
+@media(max-width:720px){.news article{grid-template-columns:1fr;gap:4px}}
+
+/* 年曆 */
+.cal{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--ink)}
+.cal div{padding:24px 20px 10px 0}
+.cal div+div{border-left:1px solid var(--line);padding-left:20px}
+.cal .w{font-size:13px;letter-spacing:.16em;color:var(--accent)}
+.cal h3{font-size:30px;font-weight:500;margin:4px 0 6px}
+.cal p{font-size:15px;color:var(--ink-2)}
+@media(max-width:720px){.cal{grid-template-columns:1fr 1fr}.cal div:nth-child(3){border-left:0;padding-left:0}}
+
+/* ---------- 時間軸（橫向） ---------- */
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:0;overflow-x:auto;scroll-snap-type:x mandatory;border-top:1px solid var(--ink);padding-bottom:12px}
+.strip .ev{scroll-snap-align:start;padding:22px 26px 10px 0;border-right:1px solid var(--line);margin-right:26px}
+.strip .y{font-family:var(--serif);font-size:30px;color:var(--accent);line-height:1.2}
+.strip h4{font-size:18px;margin:8px 0 6px}
+.strip p{font-size:15px;color:var(--ink-2);margin:0}
+.strip-nav{display:flex;gap:8px}
+.strip-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--ink);background:none;cursor:pointer;font-size:16px;color:inherit}
+.strip-nav button:hover{background:var(--ink);color:#fff}
+.sec.dark .strip{border-top-color:#EDE6DC}.sec.dark .strip .ev{border-right-color:#3d3833}.sec.dark .strip .y{color:#D9A86C}.sec.dark .strip p{color:#B9AE9F}
+.sec.dark .strip-nav button{border-color:#EDE6DC}.sec.dark .strip-nav button:hover{background:#EDE6DC;color:var(--dark)}
+
+/* ---------- 族譜 ---------- */
+.tree-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--gap);align-items:start}
+@media(max-width:900px){.tree-wrap{grid-template-columns:1fr}}
+.tree{background:var(--paper);padding:24px 18px;overflow-x:auto;border:1px solid var(--line)}
+.tree ul{list-style:none;margin:0;padding-left:26px;border-left:1px solid var(--line)}
+.tree>ul{padding-left:0;border:0}
+.tree li{margin:8px 0;position:relative}
+.tree li::before{content:"";position:absolute;left:-26px;top:18px;width:20px;border-top:1px solid var(--line)}
+.tree>ul>li::before{display:none}
+.tree li.closed>ul{display:none}
+.node{display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid var(--line);padding:5px 14px 5px 5px;cursor:pointer;font:inherit;font-size:15.5px;color:inherit;border-radius:999px}
+.node:hover,.node.sel{border-color:var(--ink)}
+.node.sel{background:var(--ink);color:#fff}
+.node .g{font-family:var(--serif);font-size:12px;min-width:40px;text-align:center;background:var(--accent);color:#fff;border-radius:999px;padding:1px 6px}
+.node.tbd{border-style:dashed;color:var(--ink-2)}
+.node.tbd .g{background:var(--line);color:var(--ink)}
+.node .st{font-size:11px;padding:0 6px;border-radius:999px;border:1px solid var(--gold);color:var(--gold)}
+.node.sel .st{color:#E0BC85;border-color:#E0BC85}
+.node .tg{width:12px;font-size:11px;color:var(--ink-2)}
+.panel{position:sticky;top:96px;background:var(--paper);border:1px solid var(--line);padding:28px}
+.panel .gbig{font-family:var(--serif);font-size:56px;color:var(--accent);line-height:1;font-weight:500}
+.panel h3{font-size:26px;margin:8px 0 10px}
+.calc{margin-top:16px;border:1px solid var(--line);padding:22px 28px;background:var(--bg)}
+.calc input{font:inherit;width:130px;padding:6px 10px;border:1px solid var(--line);background:#fff;margin-left:8px}
+.calc .out{font-family:var(--serif);font-size:26px;color:var(--accent-2);margin-top:10px;min-height:1.4em}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;font-size:13px;color:var(--ink-2)}
+
+/* ---------- 人物 ---------- */
+.person{border-top:1px solid var(--ink);padding-top:18px}
+.person .era{font-size:12px;letter-spacing:.2em;color:var(--ink-2)}
+.person h3{font-size:28px;font-weight:500;margin:6px 0 2px}
+.person .t{font-family:var(--serif);color:var(--accent);font-size:15px;margin-bottom:8px}
+.person p{font-size:15.5px;color:var(--ink-2);margin:0}
+
+/* ---------- 宗祠展品卡（美術館標籤） ---------- */
+.halls{display:grid;grid-template-columns:repeat(4,1fr);gap:48px var(--gap)}
+@media(max-width:1000px){.halls{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.halls{grid-template-columns:1fr}}
+.hall{background:none;border:0;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.hall .ph{aspect-ratio:4/5;margin-bottom:14px;transition:filter .3s}
+.hall:hover .ph{filter:brightness(1.04) saturate(1.1)}
+.hall .one{font-family:var(--serif);font-size:20px;line-height:1.4}
+.label{font-size:12.5px;line-height:1.7;color:var(--ink-2);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.label b{color:var(--ink);font-weight:500}
+dialog{border:0;padding:0;max-width:980px;width:calc(100% - 32px);max-height:calc(100vh - 40px);background:var(--bg);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(20,16,14,.6)}
+dialog .in{display:grid;grid-template-columns:1fr 1fr}
+dialog .in .ph{aspect-ratio:auto;height:100%;min-height:320px}
+dialog .txt{padding:36px 36px 30px}
+dialog h2{font-size:30px;margin:8px 0 4px}
+dialog .one{font-family:var(--serif);color:var(--accent);font-size:18px;margin-bottom:18px}
+dialog dl{display:grid;grid-template-columns:72px 1fr;gap:10px 16px;margin:0;font-size:15px}
+dialog dt{font-size:12px;letter-spacing:.2em;color:var(--ink-2);padding-top:3px}
+dialog dd{margin:0}
+dialog .x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:20px;cursor:pointer;z-index:2}
+@media(max-width:760px){dialog .in{grid-template-columns:1fr}dialog .in .ph{min-height:220px}dialog .txt{padding:24px}}
+
+/* 比較表 */
+.cmp-wrap{overflow-x:auto;border-top:1px solid var(--ink)}
+table.cmp{width:100%;border-collapse:collapse;font-size:14.5px;min-width:900px}
+table.cmp th{font-size:11.5px;letter-spacing:.18em;color:var(--ink-2);font-weight:500;text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.cmp td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp td.n{font-family:var(--serif);font-size:16px;white-space:nowrap}
+table.cmp .thumb{width:84px}
+table.cmp .thumb .ph{aspect-ratio:1}
+table.cmp .tbd{color:#B2A898;font-style:italic;font-size:13px}
+table.cmp tr:hover td{background:rgba(166,58,43,.04)}
+
+/* 立面互動 */
+.facade{position:relative}
+.facade .ph{aspect-ratio:1000/560}
+.hot{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:13px;cursor:pointer;font-family:var(--serif);box-shadow:0 0 0 0 rgba(166,58,43,.5);animation:pulse 2.6s infinite}
+.hot.on{background:var(--accent);animation:none;transform:translate(-50%,-50%) scale(1.15)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(30,26,23,.35)}70%{box-shadow:0 0 0 12px rgba(30,26,23,0)}}
+.facade-info{min-height:200px}
+.facade-info .num{font-family:var(--serif);font-size:64px;color:var(--accent);line-height:1}
+.facade-info h3{font-size:30px;margin:6px 0 10px}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.dots button{font:inherit;font-size:13px;border:1px solid var(--line);background:none;padding:2px 10px;cursor:pointer;border-radius:999px;color:var(--ink-2)}
+.dots button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* 平面動線 */
+.plan{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--ink)}
+.plan button{font:inherit;background:none;border:0;border-right:1px solid var(--line);padding:22px 8px;cursor:pointer;color:var(--ink-2);text-align:center}
+.plan button:last-child{border-right:0}
+.plan button b{display:block;font-family:var(--serif);font-size:18px;color:var(--ink);font-weight:500}
+.plan button small{font-size:11px;letter-spacing:.2em}
+.plan button.on{background:var(--ink);color:#bbb}.plan button.on b{color:#fff}
+.plan-info{padding:24px 0 0;max-width:640px}
+@media(max-width:720px){.plan{grid-template-columns:repeat(3,1fr)}.plan button:nth-child(3){border-right:0}.plan button:nth-child(-n+3){border-bottom:1px solid var(--line)}}
+
+/* ---------- 科舉階梯 ---------- */
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);align-items:end;gap:2px;border-bottom:1px solid var(--ink)}
+.rung{font:inherit;border:0;cursor:pointer;color:var(--ink);text-align:left;padding:16px 18px;background:var(--bg-alt);transition:background .2s}
+.rung:nth-child(1){height:110px}.rung:nth-child(2){height:160px}.rung:nth-child(3){height:210px}.rung:nth-child(4){height:260px}
+.rung b{display:block;font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);font-weight:500}
+.rung small{font-size:13px;color:var(--ink-2)}
+.rung:hover{background:#E3D9CA}
+.rung.on{background:var(--accent);color:#fff}.rung.on small{color:#F3D9C8}
+.ladder-info{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);padding-top:30px}
+@media(max-width:760px){.ladder-info{grid-template-columns:1fr}}
+.ladder-info h3{font-size:28px;margin-bottom:8px}
+.big-modern{font-family:var(--serif);font-size:clamp(20px,2.2vw,26px);line-height:1.6}
+.big-modern b{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.24em;color:var(--gold);font-weight:500;margin-bottom:6px}
+
+/* 古今對照 */
+.vs{border-top:1px solid var(--ink)}
+.vs .row{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.vs .a{font-family:var(--serif);font-size:22px}
+.vs .a small{display:block;font-family:var(--sans);font-size:13px;color:var(--ink-2)}
+.vs .arrow{color:var(--accent);text-align:center}
+.vs .b{font-size:16px}
+
+/* 古文卡 */
+.classics{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
+.classic{padding:34px 34px 30px 0;border-bottom:1px solid var(--line)}
+.classic:nth-child(even){padding-left:34px;border-left:1px solid var(--line)}
+.classic .from{font-size:12px;letter-spacing:.2em;color:var(--ink-2)}
+.classic .text{font-family:var(--serif);font-size:clamp(26px,3vw,38px);line-height:1.4;margin:10px 0 12px;font-weight:500}
+.classic .plain{font-size:16px}
+.classic .plain::before{content:"白話　";color:var(--accent);font-size:12px;letter-spacing:.2em}
+.classic a.lk{font-size:13px;color:var(--ink-2)}
+@media(max-width:760px){.classics{grid-template-columns:1fr}.classic:nth-child(even){padding-left:0;border-left:0}}
+
+/* 戰地 */
+.sec.dark .item p{color:#B9AE9F}
+.sec.dark .rule{border-top-color:#3d3833}
+.sec.dark .ph{background:#2b2724}
+
+/* 保存 */
+.verdict{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);line-height:1.6;max-width:860px;margin-bottom:56px}
+.verdict small{display:block;font-family:var(--sans);font-size:16px;color:var(--ink-2);margin-top:14px;line-height:1.8}
+.reason .n{font-family:var(--serif);font-size:44px;color:var(--accent);line-height:1;font-weight:500}
+
+/* 名詞總表 */
+.gsearch{font:inherit;width:min(420px,100%);padding:10px 0;border:0;border-bottom:1px solid var(--ink);background:none;font-size:18px;margin-bottom:18px;outline:none}
+.gl .item{border-top:1px solid var(--line);padding-top:16px}
+.gl .item h3{font-size:22px}
+.gl .item.hl{background:rgba(168,132,60,.12)}
+
+/* ---------- 頁尾 ---------- */
+.site-f{background:var(--ink);color:#B9AE9F;padding:70px 0 50px;font-size:14px}
+.site-f .top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:40px}
+.site-f .big{font-family:var(--serif);font-size:34px;color:#fff;letter-spacing:.2em}
+.site-f a{color:#E0BC85}
+.site-f nav a{color:#EDE6DC;text-decoration:none;margin-right:22px}
+.site-f details summary{cursor:pointer;color:#EDE6DC;letter-spacing:.12em}
+.srcs{columns:2;column-gap:40px;padding-left:22px;margin-top:16px}
+.srcs li{break-inside:avoid;margin-bottom:6px}
+.srcs li:target{background:rgba(224,188,133,.2)}
+@media(max-width:720px){.srcs{columns:1}}
+
+/* ---- 修正 ---- */
+@media(max-width:560px){.halls{grid-template-columns:1fr 1fr;gap:28px 14px}.hall .ph{aspect-ratio:1}.hall .one{font-size:16px}.label{font-size:11.5px}}
+table.cmp{min-width:1180px}
+table.cmp .ph .cap{display:none}
+table.cmp td:nth-child(3){white-space:nowrap}
+table.cmp td:nth-child(4){min-width:120px;font-family:var(--serif)}
+table.cmp td:nth-child(6),table.cmp td:nth-child(7){min-width:110px}
+
+/* ---------- 分布地圖 ---------- */
+.map-tools{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:-20px 0 18px}
+.map-wrap{display:grid;grid-template-columns:1fr 320px;gap:var(--gap);align-items:start}
+@media(max-width:960px){.map-wrap{grid-template-columns:1fr}}
+.map{position:relative;aspect-ratio:1000/618;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--ink);z-index:2;width:26px;height:26px}
+.pin .d{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-family:var(--serif);transition:transform .2s}
+.pin.hall .d{background:var(--accent);color:#fff}
+.pin.site .d{background:var(--paper);border:1.5px solid var(--ink);color:var(--ink)}
+.pin .t{position:absolute;font-size:12.5px;white-space:nowrap;background:rgba(255,255,255,.88);padding:0 5px;line-height:20px;pointer-events:none}
+.pin.lab-r .t{left:calc(100% + 5px);top:3px}
+.pin.lab-l .t{right:calc(100% + 5px);top:3px}
+.pin.lab-t .t{bottom:calc(100% + 4px);left:50%;transform:translateX(-50%)}
+.pin.lab-b .t{top:calc(100% + 4px);left:50%;transform:translateX(-50%)}
+.pin:hover .d,.pin.on .d{transform:scale(1.25)}
+.pin.on .t{background:var(--ink);color:#fff}
+.pin:hover{z-index:3}
+@media(max-width:760px){.pin .t{display:none}.pin,.pin .d{width:22px;height:22px;font-size:11px}}
+.map-info{background:var(--paper);border:1px solid var(--line);padding:24px;min-height:200px;position:sticky;top:96px}
+.map-info .num{font-family:var(--serif);font-size:48px;line-height:1;color:var(--accent)}
+.map-info h3{font-size:22px;margin:8px 0 8px}
+.map-info .go{font:inherit;font-size:14px;background:none;border:0;border-bottom:1px solid var(--accent);color:var(--accent);padding:0;cursor:pointer}
+.map-legend{list-style:none;padding:0;margin:16px 0 0;font-size:13.5px;columns:1}
+.map-legend li{display:flex;gap:8px;align-items:center;padding:3px 0;cursor:pointer;color:var(--ink-2)}
+.map-legend li:hover{color:var(--ink)}
+.map-legend i{font-style:normal;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;flex:none}
+.map-legend i.hall{background:var(--accent);color:#fff}.map-legend i.site{border:1px solid var(--ink)}
+
+/* ---------- 現場導覽 ---------- */
+.menu a.cta{color:var(--accent)}
+.menu a.cta.on{border-bottom-color:var(--accent)}
+@media(max-width:720px){.menu{flex-wrap:wrap;gap:4px 14px;justify-content:flex-start}}
+.guide-hero h1{font-size:clamp(44px,8vw,96px);line-height:1.15}
+.g-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.g-btn{font:inherit;font-size:16px;letter-spacing:.08em;padding:14px 26px;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.g-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.g-btn.ghost{border-color:transparent;text-decoration:underline;text-decoration-color:var(--line)}
+.g-btn:hover{filter:brightness(1.08)}
+.g-steps{display:flex;gap:0;list-style:none;padding:0;margin:40px 0 0;counter-reset:s;max-width:640px;border-top:1px solid var(--line)}
+.g-steps li{flex:1;padding-top:12px;font-size:14px;color:var(--ink-2);counter-increment:s;position:relative}
+.g-steps li::before{content:"0" counter(s) " ";font-family:var(--serif);color:var(--line)}
+.g-steps li.on{color:var(--ink)}.g-steps li.on::before{color:var(--accent)}
+.g-steps li.on::after{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--accent)}
+.flow-grid{display:grid;grid-template-columns:200px 1fr;gap:var(--gap);align-items:start}
+@media(max-width:640px){.flow-grid{grid-template-columns:1fr}}
+.g-thumb{width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--line)}
+.g-msg{color:var(--ink-2);font-size:15px}
+.hall-pick{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pick-h{font-size:22px;margin:50px 0 20px}
+.plaques{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:36px var(--gap)}
+.plq-card{font:inherit;color:inherit;text-align:left;background:none;border:0;padding:0;cursor:pointer}
+.plq-card .k{font-size:12px;letter-spacing:.16em;color:var(--accent);margin-top:12px}
+.plq-card h3{font-size:22px;margin:4px 0 4px}
+.plq-card p{font-size:14.5px;color:var(--ink-2);margin:0}
+.plq{aspect-ratio:2/1;transition:transform .3s}
+.plq-card:hover .plq{transform:translateY(-4px)}
+.back{font-size:14px;color:var(--ink-2);text-decoration:none}
+.st-top{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--gap);align-items:center;margin:26px 0 20px}
+@media(max-width:820px){.st-top{grid-template-columns:1fr}}
+.st-title{font-size:clamp(44px,7vw,84px);letter-spacing:.12em;font-weight:500;margin:10px 0 12px}
+.st-hook{font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);line-height:1.6}
+.st-label{font-size:14px}
+.st-block{padding:56px 0 0}
+.st-big{font-size:clamp(18px,2vw,22px);max-width:760px}
+.st-list{padding-left:20px;margin:0}.st-list li{margin-bottom:8px}
+.journey{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:start}
+@media(max-width:820px){.journey{grid-template-columns:1fr}}
+.jmap{width:100%;border:1px solid var(--line);display:block}
+#jdot{transition:cx .7s ease,cy .7s ease}
+.jsteps{list-style:none;padding:0;margin:0 0 18px;border-top:1px solid var(--ink)}
+.jsteps li{padding:12px 0 12px 0;border-bottom:1px solid var(--line);cursor:pointer;color:var(--ink-2);font-size:15.5px;transition:color .2s}
+.jsteps li b{display:inline-block;min-width:64px;font-family:var(--serif);font-weight:500;color:var(--ink-2)}
+.jsteps li.done{color:var(--ink)}
+.jsteps li.on{color:var(--ink);background:rgba(166,58,43,.06);padding-left:10px}
+.jsteps li.on b{color:var(--accent)}
+.st-nav{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:70px;padding-top:20px;border-top:1px solid var(--ink)}
+.st-nav a{text-decoration:none;font-family:var(--serif);font-size:17px}
+.st-nav a:hover{color:var(--accent)}
+@media(max-width:640px){.g-thumb{width:120px}.plaques{grid-template-columns:1fr 1fr;gap:26px 14px}.plq-card h3{font-size:18px}.plq-card p{font-size:13px}.g-btn{width:100%;justify-content:center}}
+
+/* =========================================================
+   第二批：祭祀頁、字輩、族譜、五層祠堂
+   ========================================================= */
+.btn{display:inline-block;font:500 15px var(--sans);letter-spacing:.08em;padding:12px 26px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;cursor:pointer;border-radius:var(--radius);transition:.2s}
+.btn:hover{background:var(--accent);border-color:var(--accent)}
+.h3s{font-size:22px;margin:0 0 18px}
+/* 抽鬮 */
+.lot-box{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.lot-box>div:last-child{flex:1 1 280px;min-width:0}
+.lot-ball{flex:none;width:120px;height:120px;border-radius:50%;background:var(--accent);color:#fff;font:600 46px var(--serif);display:grid;place-items:center;box-shadow:inset 0 -8px 0 rgba(0,0,0,.15)}
+.lot-ball.bump{animation:lotpop .4s}
+@keyframes lotpop{50%{transform:scale(1.15)}}
+.lot-res{margin-top:16px;max-width:520px;min-height:5.6em;font-size:16px}.lot-res b{display:block;font:600 24px var(--serif);margin-bottom:4px;color:var(--accent)}
+/* 座次 */
+.seat-wrap{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+.seat-cap{font-size:15px;margin-bottom:12px}.seat-cap b{font-family:var(--serif);font-size:20px}
+.seat-plan{border:1px solid var(--ink);background:var(--paper);padding:18px}
+.seat-plan .kan{text-align:center;background:var(--ink);color:var(--bg);font-family:var(--serif);letter-spacing:.6em;padding:8px;margin-bottom:16px}
+.row3{display:flex;gap:10px;align-items:stretch;overflow-x:auto;padding-bottom:4px}
+.row3>div{flex:none}
+.row3 .lab{font-size:12px;letter-spacing:.14em;color:var(--ink-2);text-align:center;margin-bottom:8px}
+.row3 .mid{background:#F3E7E3;padding:10px;border:1px solid var(--accent)}
+.row3 .side{background:var(--bg);padding:10px;border:1px solid var(--line)}
+.tabs{display:flex;flex-wrap:nowrap;gap:4px;justify-content:center}
+.tab-s{writing-mode:vertical-rl;font:500 14px var(--serif);background:#fff;border:1px solid var(--gold);color:var(--ink);padding:8px 4px;min-height:74px;width:28px;cursor:pointer;border-radius:3px 3px 0 0;display:flex;align-items:center;gap:2px;line-height:1.1}
+.tab-s i{font-style:normal;font-size:10px;color:var(--gold);writing-mode:horizontal-tb}
+.tab-s.main{background:var(--accent);color:#fff;border-color:var(--accent);cursor:default;width:32px}
+.tab-s.main em{font-style:normal;font-size:11px;opacity:.8}
+.tab-s.on,.tab-s[data-n]:hover{background:var(--gold);color:#fff}
+.seat-plan .front{margin-top:16px;border:1px dashed var(--ink-2);text-align:center;font-size:13px;padding:8px;color:var(--ink-2)}
+.seat-plan .court{text-align:center;font-size:12px;color:var(--ink-2);padding-top:8px;letter-spacing:.2em}
+.seat-info{font-size:15px;min-height:3.2em}.seat-info b{font-family:var(--serif);font-size:20px}
+
+/* 三獻禮 */
+.stepper{max-width:760px}
+.step{border-top:1px solid rgba(255,255,255,.3);padding:30px 0;min-height:230px}
+.step .sn{font-size:13px;letter-spacing:.2em;color:var(--gold)}
+.step h3{font-size:clamp(30px,4vw,44px);margin:6px 0 14px;color:#fff}
+.step p{font-size:18px;color:#E9E2D8}
+.step .modern{border-left:2px solid var(--gold);padding-left:14px;color:#CFC6BA;font-size:15px}.step .modern b{color:var(--gold);margin-right:10px;font-weight:500}
+.step-nav{display:flex;align-items:center;gap:16px}
+.step-nav>button{width:48px;height:48px;border-radius:50%;border:1px solid #fff;background:none;color:#fff;font-size:18px;cursor:pointer}
+.step-nav>button:hover{background:#fff;color:var(--ink)}
+.step-dots{display:flex;gap:8px;flex-wrap:wrap}.step-dots button{width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,.3);padding:0;cursor:pointer}.step-dots button.on{background:var(--gold)}
+/* 角色 */
+.role{border-top:2px solid var(--ink);padding-top:16px}.role .n{font-size:13px;color:var(--accent);letter-spacing:.1em}.role h3{font-size:24px;margin:4px 0 10px}
+/* 祭文 */
+.jw-frame{border-left:2px solid var(--accent);margin-bottom:50px}
+.jf,.jl{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:12px 0 12px 20px;border-bottom:1px solid var(--line)}
+.jf .o,.jl .o{font-family:var(--serif);font-size:19px;letter-spacing:.08em}
+.jf .p,.jl .p{font-size:15px;color:var(--ink-2)}
+.jw-two{align-items:start}
+.jw .from{font-size:13px;letter-spacing:.14em;color:var(--accent);margin-bottom:6px}
+.jw .jl{grid-template-columns:1fr;gap:2px;padding-left:0}
+.jw .jl .o{font-size:24px}
+@media(max-width:720px){.jf{grid-template-columns:1fr;gap:4px}}
+/* 過去與現在 */
+.thennow{border-top:1px solid var(--ink)}
+.tn-h,.tn{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:16px 0;border-bottom:1px solid var(--line)}
+.tn-h{font:600 13px var(--sans);letter-spacing:.2em;color:var(--accent)}
+.tn>div:first-child{color:var(--ink-2)}
+.editor{margin-top:50px;border:1px dashed var(--gold);padding:0 22px}
+.editor summary{color:var(--gold)}
+/* 字輩 */
+.zb-top{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:24px;align-items:center;margin-bottom:26px}
+.zb-top .gsearch{margin:0}
+.zb-out{font-size:17px}.zb-out .g{color:var(--accent);font-family:var(--serif);font-size:22px}
+.zb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.zb{background:var(--paper);border:1px solid var(--line);padding:8px 0 10px;font:500 26px var(--serif);cursor:pointer;display:flex;flex-direction:column;align-items:center;line-height:1.1;color:var(--ink)}
+.zb small{font:11px var(--sans);color:var(--ink-2);margin-bottom:4px}
+.zb:hover{border-color:var(--ink)}.zb.on{background:var(--accent);color:#fff;border-color:var(--accent)}.zb.on small{color:#fff}
+@media(max-width:720px){.zb-top{grid-template-columns:1fr}}
+/* 族譜六修 */
+.eds{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--ink)}
+.ed{padding:20px 16px 10px 0}.ed+.ed{border-left:1px solid var(--line);padding-left:16px}
+.ed .n{font-size:12px;letter-spacing:.16em;color:var(--accent)}.ed .y{font:600 26px var(--serif)}.ed h4{font-size:16px;margin:4px 0 8px}.ed p{font-size:14px;color:var(--ink-2)}
+@media(max-width:980px){.eds{grid-template-columns:1fr 1fr}.ed:nth-child(odd){border-left:0;padding-left:0}}
+.layers{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center;margin-top:60px}
+.page3{background:var(--paper);border:1px solid var(--ink);box-shadow:8px 8px 0 var(--bg-alt)}
+.page3 div{padding:18px 20px;font-family:var(--serif);font-size:18px;border-bottom:1px solid var(--line)}.page3 div:last-child{border:0}
+.page3 small{display:inline-block;width:52px;font:12px var(--sans);color:var(--accent);letter-spacing:.1em}
+@media(max-width:720px){.layers{grid-template-columns:1fr}}
+/* 九房四甲 */
+.f9 .pai{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line)}
+.f9 .pn{font:600 24px var(--serif)}.f9 .pn small{display:block;font:13px var(--sans);color:var(--ink-2)}
+.f9 .fl,.f9 .jia{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.f9 .fl span,.f9 .jia span{border:1px solid var(--ink);padding:6px 14px;font-family:var(--serif);background:var(--paper)}
+.f9 .jia{padding:18px 0;border-top:1px solid var(--ink);margin-bottom:12px}.f9 .jia b{width:200px;font:600 20px var(--serif)}
+.f9 .jia span{border-color:var(--accent);color:var(--accent)}
+@media(max-width:720px){.f9 .pai{grid-template-columns:1fr;gap:8px}.f9 .jia b{width:100%}}
+/* 五層祠堂 */
+.tiers{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tier{width:var(--w);min-width:300px;display:grid;grid-template-columns:150px 1fr;background:var(--paper);border:1px solid var(--line)}
+.tier .lv{background:var(--ink);color:var(--bg);padding:14px 16px;font-family:var(--serif);font-size:20px}
+.tier .lv b{color:var(--gold);margin-right:8px}.tier .lv small{display:block;font:12px var(--sans);opacity:.7}
+.tier .hs{display:flex;flex-wrap:wrap}
+.tier .h{flex:1;min-width:150px;padding:12px 16px;border-left:1px solid var(--line)}
+.tier .h b{display:block;font-family:var(--serif);font-size:18px}.tier .h span{font-size:13px;color:var(--ink-2)}
+.tier:first-child .lv{background:var(--accent)}
+.tiers-story{margin:50px auto 0;max-width:760px;text-align:center}
+.tiers-story .q{font:600 clamp(30px,4vw,46px) var(--serif);color:var(--accent);margin-bottom:14px;letter-spacing:.1em}
+@media(max-width:720px){.tier{width:100%;grid-template-columns:1fr}.tier .h{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:900px){.cal{grid-template-columns:1fr 1fr}.cal div:nth-child(odd){border-left:0;padding-left:0}}
+@media(max-width:720px){.tree ul ul{padding-left:12px!important;margin-left:6px!important}.tree .node{font-size:14px}}
+
+/* ---------- 宗祠地圖：四甲圖層 ---------- */
+#m-jia{display:none}
+.map.jia-on #m-jia{display:inline}
+.map.jia-on .pin.j-on .d{background:var(--jc)}
+.map.jia-on .pin.j-all .d{background:var(--ink)}
+.map.jia-on .pin.site{opacity:.4}
+.jia-list{list-style:none;padding:0;margin:14px 0}
+.jia-list li{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);line-height:1.6}
+.jia-list i{flex:none;width:14px;height:14px;border-radius:50%;background:var(--jc);margin-top:6px}
+.jia-list li.all i{background:var(--ink)}
+.jia-list b{font-family:var(--serif);margin-right:6px}
+.jia-tbd{color:var(--gold)}
+.jia-of{border-left:3px solid var(--jc);padding:4px 0 4px 10px;margin:10px 0 14px}
+.jia-of b{font-family:var(--serif);color:var(--jc);margin-right:6px}
+.jia-todo{margin-top:10px;font-size:14px}
+.jia-todo summary{cursor:pointer;color:var(--accent)}
+.jia-todo ol{padding-left:20px;margin:8px 0;color:var(--ink-2)}
+.go-link{font-size:15px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+
+/* ---------- 匾額清冊 ---------- */
+.inv-sum{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:14px;font-size:15px}
+.inv-sum b{font-family:var(--serif);font-size:20px;font-weight:600}
+.inv-tally{display:flex;flex-wrap:wrap;gap:6px;width:100%}
+.inv-tally span{font-size:13px;background:var(--bg-alt);padding:2px 10px;border-radius:999px;color:var(--ink-2)}
+table.cmp.inv{min-width:640px}
+table.cmp.inv td.sz{font-size:13px;color:var(--ink-2);white-space:nowrap}
+.inv-st{display:inline-block;font-size:13.5px;color:var(--accent);margin-right:4px}
+.or{font-size:12px;color:var(--ink-2);margin:0 4px}
+.inv-note{font-size:12.5px;color:var(--ink-2);margin-top:4px;line-height:1.6}
+
+/* ---------- 家廟彩繪尋寶 ---------- */
+.hunt-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px 16px}
+.hunt-bar .chips{margin-bottom:20px}
+.hunt-score{font-size:14px;color:var(--ink-2);padding-top:4px}
+.hunt-score b{font-family:var(--serif);font-size:22px;color:var(--accent)}
+.hunt-reset{font:inherit;font-size:12px;background:none;border:0;color:var(--ink-2);text-decoration:underline;cursor:pointer;margin-left:6px}
+.hunt{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.hunt-card{background:var(--paper);border:1px solid var(--line);padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px}
+.hunt-card.got{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.hunt-card .hk{display:flex;flex-wrap:wrap;gap:4px 0}
+.hunt-card h3{font-family:var(--serif);font-size:19px;margin:2px 0 0}
+.hunt-card dl{margin:0;font-size:14px;display:grid;grid-template-columns:auto 1fr;gap:4px 10px}
+.hunt-card dt{color:var(--ink-2);font-size:12px;letter-spacing:.1em;padding-top:2px}
+.hunt-card dd{margin:0}
+.hunt-card details{font-size:14px}
+.hunt-card summary{cursor:pointer;color:var(--accent);font-size:13.5px}
+.hunt-card details p{margin:6px 0}
+.hunt-got{margin-top:auto;align-self:flex-start;font:inherit;font-size:14px;border:1px solid var(--ink);background:none;padding:5px 16px;border-radius:999px;cursor:pointer}
+.hunt-card.got .hunt-got{background:var(--gold);border-color:var(--gold);color:#fff}
+
+/* ---------- 匾額故事：偵探筆記 ---------- */
+.clue-q{font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);margin:4px 0 22px}
+.clues{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.clues li{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 18px}
+.clues .cn{font-size:11px;letter-spacing:.2em;color:var(--accent)}
+.clues h3{font-size:19px;margin:4px 0 8px;display:flex;align-items:center;gap:8px}
+.clues p{font-size:14.5px;margin:0}
+.yrs{display:grid;grid-template-columns:repeat(3,1fr);margin:28px 0 0;border-top:1px solid var(--ink)}
+.yrs>div{padding:14px 14px 10px 0;border-right:1px solid var(--line)}
+.yrs>div:last-child{border-right:0}
+.yrs>div+div{padding-left:14px}
+.yrs small{font-size:12px;letter-spacing:.1em;color:var(--ink-2)}
+.yrs b{display:block;font-family:var(--serif);font-size:28px;font-weight:500;margin:2px 0}
+.yrs p{font-size:13px;color:var(--ink-2);margin:0}
+@media(max-width:620px){.yrs{grid-template-columns:1fr}.yrs>div{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}}
+.verdict{margin-top:22px;padding-left:14px;border-left:3px solid var(--gold);font-size:16px;max-width:760px}
+.verdict .tag{margin-left:8px}
+
+/* ---------- 怡穀堂 ---------- */
+.yigu-win{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--gap);align-items:center}
+@media(max-width:820px){.yigu-win{grid-template-columns:1fr}}
+.yw-btns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.yw-btns button{font:inherit;background:var(--paper);border:1px solid var(--line);padding:10px 4px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--ink-2)}
+.yw-btns button svg{width:46px;height:46px}
+.yw-btns button.on{border-color:var(--accent);color:var(--ink)}
+.yw-shape>*{fill:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.yw-shape .d{stroke-width:1.6;stroke:var(--gold)}
+.yw-btns button.on .yw-shape>:not(.d){stroke:var(--accent)}
+.yw-info{display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center;border-top:1px solid var(--ink);padding-top:18px}
+.yw-big svg{width:140px;height:140px}
+.yw-big .yw-shape>:not(.d){fill:rgba(166,58,43,.06);stroke:var(--accent)}
+.yw-info h3{font-size:24px;margin:0 0 8px}
+.yw-word{border-top:1px solid var(--line);padding:12px 0}
+.yw-word b{font-family:var(--serif);font-size:20px;font-weight:500}
+.yw-word p{margin:4px 0 0;font-size:15px}
+sup.src+sup.src::before{content:",";color:var(--gold);font-size:10px}
+.plan-aerial{max-width:860px;margin:0 auto 28px}.plan-aerial svg{display:block;width:100%;height:auto}
+.seo-text{max-width:860px;margin:40px auto;padding:0 20px}
+
+/* ---------- 鳥瞰圖互動 ---------- */
+.plan-ctl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 auto 14px;max-width:860px}
+.pa-glow{fill:rgba(242,193,78,0);stroke:none;pointer-events:none;transition:fill .25s,stroke .25s}
+.pa-glow.hov{fill:rgba(242,193,78,.12);stroke:#C9A25A;stroke-width:1.5;stroke-dasharray:5 4}
+.pa-glow.on{fill:rgba(242,193,78,.2);stroke:#E0A82E;stroke-width:3;stroke-dasharray:none}
+.pa-hit{fill:transparent;cursor:pointer}
+.pz-lab{cursor:pointer}
+.pz-lab .pz-num{transition:r .2s,fill .2s}
+.pz-lab.on .pz-num{fill:#2B211B;r:14}
+.f-contact{margin-top:6px;font-size:14px}
+.f-contact a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.plan-aerial{margin:0 -20px 20px}}

@@ -1,0 +1,5 @@
+# 歡迎搜尋引擎與 AI 讀取本站
+User-agent: *
+Allow: /
+
+Sitemap: https://juliechang0520.github.io/qionglin-cai/sitemap.xml
