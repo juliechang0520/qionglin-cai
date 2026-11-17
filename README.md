@@ -63,11 +63,4 @@ images/對照表.csv    照片檔名對照表
 - 有人臉的照片，上網前請先取得當事人同意。
 - 引用文化局報告的圖面前，請先取得授權並註明出處。
 
-## 搜尋引擎、AI 與 GA 追蹤
 
-- 網址：https://juliechang0520.github.io/qionglin-cai/
-- GA 評估 ID：`G-BVGJB2GGVE`（寫在 `tools/build-seo.js` 開頭）
-- 每頁 `<head>` 有標題、說明、分享預覽（`og.png`）、GA、結構化資料（JSON-LD）；`<body>` 開頭有給不執行 JavaScript 的 AI 讀的 `<noscript>` 摘要。
-- 根目錄的 `llms.txt`、`llms-full.txt` 是給 AI 的網站介紹與全文；`sitemap.xml`、`robots.txt` 給搜尋引擎。
-- **改完 `js/*.js` 的內容後**，在網站資料夾執行 `node tools/build-seo.js`，上面這些會自動更新。HTML 裡 `<!--SEO:START-->` 到 `<!--SEO:END-->` 之間是自動產生的，不要手改。
-- 上線後到 Google Search Console 新增網站，提交 `sitemap.xml`。
