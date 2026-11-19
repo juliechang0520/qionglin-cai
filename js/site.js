@@ -9,7 +9,7 @@ const page=document.body.dataset.page;
 const set=(sel,html)=>{const el=$(sel);if(el)el.innerHTML=html;return el;};
 
 /* ---------- 版頭・版尾（改選單只要改這裡） ---------- */
-const MENU=[["index.html","今日瓊林","HOME","home"],["family.html","家族","FAMILY","family"],["architecture.html","宗祠與建築","ARCHITECTURE","arch"],["history.html","歷史","HISTORY","history"],["rites.html","祭祀","RITES","rites"],["guide.html","拍匾額聽故事","GUIDE","guide"]];
+const MENU=[["index.html","今日瓊林","HOME","home"],["family.html","家族","FAMILY","family"],["architecture.html","宗祠與建築","ARCHITECTURE","arch"],["history.html","歷史","HISTORY","history"],["rites.html","祭祀","RITES","rites"],["guide.html","拍匾額聽故事","GUIDE","guide"],["en/","English","EN","en"]];
 set("#site-h",`<div class="wrap"><a class="logo" href="index.html"><span class="seal">瓊<br>林</span>瓊林蔡氏</a><ul class="menu">${MENU.map(m=>`<li><a href="${m[0]}" class="${m[3]==page?"on":""}${m[3]=="guide"?" cta":""}"><small>${m[2]}</small>${m[1]}</a></li>`).join("")}</ul></div>`);
 set("#site-f",`<div class="wrap"><div class="top"><div><div class="big">瓊林蔡氏</div><p>濟陽衍派・文武世家｜金門縣金湖鎮瓊林里</p>${SITE.contact?`<p class="f-contact">提供資料、勘誤或聯絡編者：<a href="mailto:${esc(SITE.contact)}">${esc(SITE.contact)}</a></p>`:""}</div><nav>${MENU.map(m=>`<a href="${m[0]}">${m[1]}</a>`).join("")}</nav></div>
 <details><summary>參考資料（文中上標數字的出處）</summary><ol class="srcs">${SOURCES.map(s=>`<li id="src-${s.id}" value="${s.id}">${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>`:`${esc(s.title)}<span class="muted">（紙本報告）</span>`}</li>`).join("")}</ol></details>

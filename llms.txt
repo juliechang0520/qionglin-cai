@@ -15,6 +15,10 @@
 ## 完整文字版
 - [llms-full.txt](https://juliechang0520.github.io/qionglin-cai/llms-full.txt)：全站內容的純文字版，含出處清單。
 
+## English
+- [English introduction](https://juliechang0520.github.io/qionglin-cai/en/): The Cai (Tsai / Chua) clan of Qionglin village, Kinmen (Quemoy), Taiwan: the "seven buildings, eight halls" national monument, Ming and Qing scholar-officials, the spring and autumn ancestral rites, and visiting information.
+- [English plain-text summary](https://juliechang0520.github.io/qionglin-cai/en/llms-en.txt)
+
 ## 重點事實
 - 地點：臺灣金門縣金湖鎮瓊林里，金門島中央。
 - 開基祖：南宋初年蔡十七郎入贅平林陳家；五世祖靜山公是今日族人的共同祖先。

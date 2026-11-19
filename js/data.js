@@ -10,7 +10,7 @@ window.SITE = {
   title: "瓊林蔡氏",
   subtitle: "濟陽衍派・文武世家",
   tagline: "從平林到瓊林，一個家族在金門島中央生活了近千年。",
-  updated: "2026-11-17",
+  updated: "2026-11-19",
   contact: "qionglincai83@gmail.com"   /* 網站最下方的聯絡信箱 */
 };
 

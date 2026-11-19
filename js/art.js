@@ -85,7 +85,7 @@ window.ART=function(kind,label,n){
    座標：u 左右（-8~8）、v 由前往後（前埕 -1~7、三川門 7~11、天井與兩廊 11~16、正廳 16~22）、z 高度。
    PLAN_ZONES 是六個區塊的地面範圍，互動時用來畫亮框，順序對應 data.js 的 PLAN。 */
 window.PLAN_ZONES=[[[-10,10,0,6.6,0.3]],[[-8,8,7,11,7]],[[-4,4,11,16,0.1]],[[-8,-4,11,16,3.9],[4,8,11,16,3.9]],[[-8,8,16,22,5]],[[-3.6,3.6,18.8,21.6,4.1]]];
-window.PLAN_AERIAL=function(){
+window.PLAN_AERIAL=function(opt){opt=opt||{};const LB=opt.labels||["前埕","三川門","天井","兩廊","正廳","祖龕"],NT=opt.notes||["示意圖：通用二進宗祠，格局參考大宗家廟，非實際比例","虛線：正廳屋頂（已掀開）"];
   const k=14,cx=347,cy=436;
   const P=(u,v,z)=>[cx+(u*0.94+v*0.34)*k, cy+(u*0.34-v*0.94)*k-(z||0)*0.55*k];
   const f=n=>n.toFixed(1),pt=(u,v,z)=>{const p=P(u,v,z);return f(p[0])+","+f(p[1]);};
@@ -195,7 +195,7 @@ window.PLAN_AERIAL=function(){
   const zonePoly=(i,cls)=>window.PLAN_ZONES[i].map(([u1,u2,v1,v2,h])=>{const pts=[];[u1,u2].forEach(u=>[v1,v2].forEach(v=>[0,h].forEach(z=>pts.push(P(u,v,z)))));
     return `<polygon class="${cls}" data-i="${i}" points="${hull(pts).map(p=>f(p[0])+","+f(p[1])).join(" ")}"/>`;}).join("");
   out+=`<g class="pa-hl">${[0,1,2,3,4,5].map(i=>zonePoly(i,"pa-glow")).join("")}</g><g class="pa-hits">${[0,4,3,1,2,5].map(i=>zonePoly(i,"pa-hit")).join("")}</g>`;
-  out+=lab(0,-7,2,0,"前埕","l")+lab(1,-6.5,7,2.2,"三川門","l")+lab(3,-6,12.5,3.4,"兩廊","l")+lab(2,1.5,15,0,"天井","r")+lab(4,6.5,18.4,hz,"正廳","r")+lab(5,1.6,21,hz+3.75,"祖龕","r");
-  return `<svg viewBox="0 0 720 505" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="宗祠鳥瞰示意圖"><rect width="720" height="505" fill="#F3E6D0"/>${out}<text x="16" y="24" font-size="12" fill="#6b5d52" font-family="sans-serif">示意圖：通用二進宗祠，格局參考大宗家廟，非實際比例</text><text x="16" y="42" font-size="12" fill="#6b5d52" font-family="sans-serif">虛線：正廳屋頂（已掀開）</text></svg>`;
+  out+=lab(0,-7,2,0,LB[0],"l")+lab(1,-6.5,7,2.2,LB[1],"l")+lab(3,-6,12.5,3.4,LB[3],"l")+lab(2,1.5,15,0,LB[2],"r")+lab(4,6.5,18.4,hz,LB[4],"r")+lab(5,1.6,21,hz+3.75,LB[5],"r");
+  return `<svg viewBox="0 0 720 505" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="宗祠鳥瞰示意圖"><rect width="720" height="505" fill="#F3E6D0"/>${out}<text x="16" y="24" font-size="12" fill="#6b5d52" font-family="sans-serif">${NT[0]}</text><text x="16" y="42" font-size="12" fill="#6b5d52" font-family="sans-serif">${NT[1]}</text></svg>`;
 };
 })();

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://juliechang0520.github.io/qionglin-cai/</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://juliechang0520.github.io/qionglin-cai/family.html</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://juliechang0520.github.io/qionglin-cai/architecture.html</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://juliechang0520.github.io/qionglin-cai/history.html</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://juliechang0520.github.io/qionglin-cai/rites.html</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://juliechang0520.github.io/qionglin-cai/guide.html</loc><lastmod>2026-11-17</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/</loc><lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://juliechang0520.github.io/qionglin-cai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juliechang0520.github.io/qionglin-cai/en/"/>
+  </url>
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/family.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/architecture.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/history.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/rites.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/guide.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://juliechang0520.github.io/qionglin-cai/en/</loc><lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juliechang0520.github.io/qionglin-cai/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://juliechang0520.github.io/qionglin-cai/"/>
+  </url>
 </urlset>
